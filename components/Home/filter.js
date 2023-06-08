@@ -1,25 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchTages } from '../../src/features/tages/tagesSlice';
 
 const filter = () => {
-   return (
+   const dispatch = useDispatch()
+   const { isLodding, error, isError, tags } = useSelector((state) => state.tags)
+
+
+   useEffect(() => {
+      dispatch(fetchTages())
+   }, [dispatch])
+
+   return tags?.length > 0 ? (
       <section>
          <div
             class="max-w-7xl mx-auto px-5 py-6 lg:px-0 flex gap-2 border-b overflow-y-auto"
          >
-            <div
-               class="bg-blue-100 text-blue-600 px-4 py-1 rounded-full cursor-pointer"
-            >
-               react
-            </div>
+            {
+               tags.map(tag => <div key={tag.id}
+                  class="bg-blue-600 text-white px-4 py-1 rounded-full cursor-pointer"
+               >
+                  {tag.title}
+               </div>)
+            }
 
-            <div
-               class="bg-blue-600 text-white px-4 py-1 rounded-full cursor-pointer"
-            >
-               redux
-            </div>
          </div>
       </section>
-   );
+   ) : null
 };
 
 export default filter;

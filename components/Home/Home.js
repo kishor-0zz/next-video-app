@@ -3,7 +3,10 @@ import Filter from './filter'
 import Card from './Card'
 import Nevegation from './Nevegation'
 
+
 const Home = () => {
+
+
    return (
       <div>
          <Filter></Filter>
