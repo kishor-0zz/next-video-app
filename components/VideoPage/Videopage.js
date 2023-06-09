@@ -1,6 +1,10 @@
 import React from 'react';
 
-const Videopage = () => {
+const Videopage = ({ video }) => {
+
+   console.log(video);
+   const { } = video;
+
    return (
       <section class="pt-6 pb-20">
          <div class="mx-auto max-w-7xl px-2 pb-20 min-h-[400px]">
@@ -10,7 +14,7 @@ const Videopage = () => {
                   <iframe
                      width="100%"
                      class="aspect-video"
-                     src="https://www.youtube-nocookie.com/embed/6O4s7v28nlw"
+                     src={video.link}
                      title="Some video title"
                      frameborder=""
                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
