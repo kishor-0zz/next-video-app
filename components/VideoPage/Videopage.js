@@ -1,9 +1,10 @@
 import React from 'react';
+import RelatedVideo from './relatedVideo';
 
 const Videopage = ({ video }) => {
 
    console.log(video);
-   const { } = video;
+   const { description, link, likes, unlikes, date, id, tags } = video || {};
 
    return (
       <section class="pt-6 pb-20">
@@ -14,7 +15,7 @@ const Videopage = ({ video }) => {
                   <iframe
                      width="100%"
                      class="aspect-video"
-                     src={video.link}
+                     src={link}
                      title="Some video title"
                      frameborder=""
                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -34,7 +35,7 @@ const Videopage = ({ video }) => {
                         <h2
                            class="text-sm leading-[1.7142857] text-slate-600 w-full"
                         >
-                           Uploaded on 23 Nov 2022
+                           Uploaded on {date}
                         </h2>
 
 
@@ -50,21 +51,21 @@ const Videopage = ({ video }) => {
                               <div
                                  class="text-sm leading-[1.7142857] text-slate-600"
                               >
-                                 100K
+                                 {likes}
                               </div>
                            </div>
                            <div class="flex gap-1">
                               <div class="shrink-0">
                                  <img
                                     class="w-5 block"
-                                    src="./assets/unlike.svg"
+                                    src="../../public/assets/like.svg"
                                     alt="Unlike"
                                  />
                               </div>
                               <div
                                  class="text-sm leading-[1.7142857] text-slate-600"
                               >
-                                 100K
+                                 {unlikes}
                               </div>
                            </div>
                         </div>
@@ -73,54 +74,11 @@ const Videopage = ({ video }) => {
                      <div
                         class="mt-4 text-sm text-[#334155] dark:text-slate-400"
                      >
-                        Some video description here
+                        {description}
                      </div>
                   </div>
                </div>
-
-
-               <div
-                  class="col-span-full lg:col-auto max-h-[570px] overflow-y-auto"
-               >
-
-                  <div class="w-full flex flex-row gap-2 mb-4">
-                     <div
-                        class="relative w-[168px] h-[94px] flex-none duration-300 hover:scale-[1.03]"
-                     >
-                        <a href="video.html">
-                           <img
-                              src="https://i3.ytimg.com/vi/6O4s7v28nlw/maxresdefault.jpg"
-                              class="object-cover"
-                              alt="Some video title"
-                           />
-                        </a>
-                        <p
-                           class="absolute right-2 bottom-2 bg-gray-900 text-gray-100 text-xs px-1 py"
-                        >
-                           12:10
-                        </p>
-                     </div>
-
-                     <div class="flex flex-col w-full">
-                        <a href="#">
-                           <p
-                              class="text-slate-900 text-sm font-semibold"
-                           >
-                              Some video title
-                           </p>
-                        </a>
-                        <a
-                           class="text-gray-400 text-xs mt-2 hover:text-gray-600"
-                           href="#"
-                        >
-                           Learn with Sumit
-                        </a>
-                        <p class="text-gray-400 text-xs mt-1">
-                           100K views . 23 Oct 2022
-                        </p>
-                     </div>
-                  </div>
-               </div>
+               <RelatedVideo id={id} tags={tags} ></RelatedVideo>
             </div>
          </div>
       </section>

@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import { searched } from '../src/features/filter/firterSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Navbar = () => {
+   const { search } = useSelector(state => state.filter)
+   const dispatch = useDispatch();
+
+   const [input, setInput] = useState(search)
+
+   const searchSubmit = (e) => {
+      e.preventDefault()
+      dispatch(searched(input))
+   }
+
    return (
       <div>
          <nav class="bg-slate-100 shadow-md">
@@ -18,12 +31,14 @@ const Navbar = () => {
                   class="border border-slate-200 flex items-center bg-white h-10 px-5 rounded-lg text-sm ring-emerald-200"
                >
 
-                  <form>
+                  <form onSubmit={searchSubmit}>
                      <input
                         class="outline-none border-none mr-2"
                         type="search"
                         name="search"
                         placeholder="Search"
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
                      />
                   </form>
                   <img
