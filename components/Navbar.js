@@ -2,16 +2,27 @@ import React, { useState } from 'react';
 
 import { searched } from '../src/features/filter/firterSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const Navbar = () => {
    const { search } = useSelector(state => state.filter)
    const dispatch = useDispatch();
+   const router = useRouter()
+
+
+   console.log(router.asPath)
+
 
    const [input, setInput] = useState(search)
 
    const searchSubmit = (e) => {
       e.preventDefault()
       dispatch(searched(input))
+      if (router?.asPath !== "/") {
+         router.push("/")
+      }
+      setInput("")
    }
 
    return (

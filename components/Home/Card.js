@@ -8,11 +8,13 @@ const Card = () => {
 
    const dispatch = useDispatch()
    const { isLodding, error, isError, videos } = useSelector((state) => state.videos)
+   const { tags, search } = useSelector((state) => state.filter)
+
    let content;
 
    useEffect(() => {
-      dispatch(fetchVideos())
-   }, [dispatch])
+      dispatch(fetchVideos({ tags, search }))
+   }, [dispatch, search, tags])
 
 
    if (isLodding)
